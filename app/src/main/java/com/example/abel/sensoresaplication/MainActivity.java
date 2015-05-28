@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity implements SensorEventListener {
 
     private TextView lista, val1, val2, val3, val4, val5, val6, val7, val8, val9, val10, val11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,17 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         val10 = (TextView) findViewById(R.id.val10);
         val11 = (TextView) findViewById(R.id.val11);
 
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        List<Sensor> listaSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        for (Sensor sensor: listaSensores) {
+            log(sensor.getName());
+        }
+    }
+
+    public  void iniciar (View v) {
+        lista.setText("");
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         List<Sensor> listaSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
@@ -142,6 +155,96 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
     private void log (String string) {
         lista.append(string + "\n");
+    }
+
+
+    @Override
+    protected void onPause() {
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager.unregisterListener(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+        List<Sensor> listaSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor orientationSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, orientationSensor,
+                    SensorManager.SENSOR_DELAY_UI);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor acelerometerSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, acelerometerSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_PROXIMITY);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor proximitySensor = listaSensores.get(0);
+            sensorManager.registerListener(this, proximitySensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor giroscopioSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, giroscopioSensor,
+                    SensorManager.SENSOR_DELAY_UI);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor magneticSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, magneticSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_LIGHT);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor luzSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, luzSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_GRAVITY);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor gravedadSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, gravedadSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_TEMPERATURE);
+
+        if (!listaSensores.isEmpty()) {
+            Sensor temperatureSensor = listaSensores.get(0);
+            sensorManager.registerListener(this, temperatureSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);}
+    }
+
+    public void detener(View v) {
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager.unregisterListener(this);
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager.unregisterListener(this);
+        super.onDestroy();
+    }
+
+    public  void salir (View v) {
+        finish();
     }
 
     @Override

@@ -31,29 +31,61 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
         android:layout_marginTop="20dp">
+
+        <Button android:text="@string/Iniciar"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="iniciar"
+            android:id="@+id/boton1"/>
+
+        <Button android:text="@string/Detener"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="detener"
+            android:id="@+id/boton2"/>
+
+        <Button android:text="@string/Salir"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:onClick="salir"
+            android:id="@+id/boton3"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp">
 
         <TextView android:text="@string/Acelerometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/val1"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val2"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val3"
@@ -73,9 +105,10 @@
             android:layout_height="wrap_content"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/val10"
             android:textStyle="italic|bold"
             android:enabled="false"/>
@@ -93,21 +126,22 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/val4"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val5"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val6"
@@ -127,21 +161,22 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/val7"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val8"
             android:textStyle="italic|bold"
             android:enabled="false"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/val9"
@@ -161,9 +196,10 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:id="@+id/val11"
             android:textStyle="italic|bold"
             android:enabled="false"/>

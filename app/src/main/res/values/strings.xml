@@ -8,9 +8,9 @@
     <string name="Detener">DETENER</string>
     <string name="Salir">SALIR</string>
 
-    <string name="Acelerometer">ACCELEROMETER</string>
-    <string name="Gyroscope">GYROSCOPE</string>
-    <string name="Magnetic">MAGNETIC_FIELD</string>
-    <string name="Proximity">TYPE_PROXIMITY</string>
-    <string name="Temperature">TEMPERATURE</string>
+    <string name="Acelerometer">ACELEROMETRO</string>
+    <string name="Gyroscope">GIROSCOPIO</string>
+    <string name="Magnetic">MAGNETICO</string>
+    <string name="Proximity">PROXIMIDAD</string>
+    <string name="Temperature">TEMPERATURA</string>
 </resources>

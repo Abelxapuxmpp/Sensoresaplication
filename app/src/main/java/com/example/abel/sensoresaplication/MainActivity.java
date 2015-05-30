@@ -14,8 +14,10 @@ import android.widget.TextView;
 import java.util.List;
 
 
+//Implements evento de lista de sensores
 public class MainActivity extends ActionBarActivity implements SensorEventListener {
 
+    //Variables de los editText
     private TextView lista, val1, val2, val3, val4, val5, val6, val7, val8, val9, val10, val11;
 
     @Override
@@ -23,6 +25,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Enlazar variables con elementos graficos correspondientes
         lista = (TextView) findViewById(R.id.lista);
         val1 = (TextView) findViewById(R.id.val1);
         val2 = (TextView) findViewById(R.id.val2);
@@ -36,25 +39,29 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         val10 = (TextView) findViewById(R.id.val10);
         val11 = (TextView) findViewById(R.id.val11);
 
+        //Administrador desenores
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
+        //Agrega los sensores encontrados en un arreglo
         List<Sensor> listaSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
-
+        //Muestra los sensores en un elemento grafico
         for (Sensor sensor: listaSensores) {
             log(sensor.getName());
         }
     }
 
+    //Metodo para iniciar los sensores
     public  void iniciar (View v) {
         lista.setText("");
+        //Administrador desenores
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
+        //Agrega los sensores encontrados en un arreglo
         List<Sensor> listaSensores = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
         for (Sensor sensor: listaSensores) {
             log(sensor.getName());
         }
 
+        //Identificar el sensor de orientacion
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
 
         if (!listaSensores.isEmpty()) {
@@ -62,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, orientationSensor,
                     SensorManager.SENSOR_DELAY_UI);}
 
+        //Identificar el sensor de acelerometro
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER);
 
         if (!listaSensores.isEmpty()) {
@@ -69,6 +77,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, acelerometerSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);}
 
+        //Identificar el sensor de proximidad
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_PROXIMITY);
 
         if (!listaSensores.isEmpty()) {
@@ -76,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, proximitySensor,
                     SensorManager.SENSOR_DELAY_NORMAL);}
 
-
+        //Identificar el sensor de giroscopio
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
 
         if (!listaSensores.isEmpty()) {
@@ -84,6 +93,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, giroscopioSensor,
                     SensorManager.SENSOR_DELAY_UI);}
 
+        //Identificar el sensor de magnetico
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_MAGNETIC_FIELD);
 
         if (!listaSensores.isEmpty()) {
@@ -91,6 +101,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, magneticSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);}
 
+        //Identificar el sensor de luz
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_LIGHT);
 
         if (!listaSensores.isEmpty()) {
@@ -98,6 +109,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, luzSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);}
 
+        //Identificar el sensor de gravedad
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_GRAVITY);
 
         if (!listaSensores.isEmpty()) {
@@ -105,6 +117,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
             sensorManager.registerListener(this, gravedadSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);}
 
+        //Identificar el sensor de temperatura
         listaSensores = sensorManager.getSensorList(Sensor.TYPE_TEMPERATURE);
 
         if (!listaSensores.isEmpty()) {
@@ -118,6 +131,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
     }
 
+    //Evento para identificar el cambio de estado de los sensores
     public void onSensorChanged(SensorEvent event) {
         synchronized (this) {
             switch(event.sensor.getType()) {
@@ -153,11 +167,12 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         }
     }
 
+    //Evento para agregar datos a un listview
     private void log (String string) {
         lista.append(string + "\n");
     }
 
-
+    //Evento para pausar los servicios
     @Override
     protected void onPause() {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -165,6 +180,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         super.onPause();
     }
 
+    //Evento para resstablecer los servicios
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -230,12 +246,14 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
                     SensorManager.SENSOR_DELAY_NORMAL);}
     }
 
+    //Evento para detener los servicios
     public void detener(View v) {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.unregisterListener(this);
         super.onStop();
     }
 
+    //Evento para destruir o apagar los servicios y liberar recursos
     @Override
     protected void onDestroy() {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -243,6 +261,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
         super.onDestroy();
     }
 
+    //Evento para salir de la aplicacion
     public  void salir (View v) {
         finish();
     }
